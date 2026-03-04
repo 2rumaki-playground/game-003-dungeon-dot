@@ -36,7 +36,10 @@ task install
 
 コミット対象の変更が `docs/spec/` 配下の仕様ドキュメントに影響するかを確認する:
 
-1. `git diff main...HEAD --name-only` と `git diff --name-only` で変更ファイル一覧を取得する
+1. 以下3つのコマンドで取得した変更ファイル一覧の和集合を取る:
+   - `git diff main...HEAD --name-only`（main から分岐後にコミット済みの変更）
+   - `git diff --name-only`（未ステージの作業ツリー変更）
+   - `git diff --cached --name-only`（ステージ済みの変更）
 2. 変更ファイルに以下が含まれる場合、対応する仕様ドキュメントの更新が必要か確認する:
    - `constants.py` → `docs/spec/constants.md` の更新が必要か確認
    - `domain/`, `presentation/`, `infrastructure/` 配下のファイル → 関連する `docs/spec/` のドキュメントに影響がないか確認
