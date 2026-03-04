@@ -48,7 +48,7 @@ gh pr view <番号> --json headRefName -q .headRefName
 あなたはPR #<番号> のレビューコメント解決担当です。
 
 ## リポジトリ情報
-- owner/repo: <owner>/<repo>
+- owner/repo: {owner}/{repo}
 - PRブランチ: <ブランチ名>
 
 ## 未解決レビューコメント
