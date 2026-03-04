@@ -30,6 +30,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 同じ数値やルールを複数箇所に重複して書かない
 - 数値は必ず `constants.py`（`docs/spec/constants.md` に対応）を参照
 
+### 仕様書の同期
+- コード変更が `docs/spec/` 配下の仕様ドキュメントに影響する場合、対応する仕様ドキュメントも同時に更新する
+- 特に `constants.py` を変更した場合は `docs/spec/constants.md` の更新が必須
+- 仕様ドキュメントに新しい項目を追加した場合は `docs/spec/readme.md` の一覧も更新する
+- PR作成前に、変更内容と `docs/spec/` の整合性を確認する
+
 ### 仕様の穴は可視化
 - 曖昧点は勝手に決めずにIssue化
 
