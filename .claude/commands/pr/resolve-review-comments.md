@@ -18,7 +18,7 @@
 
 ## 並列処理モード（複数PR）
 
-複数のPR番号が指定された場合、Task toolの `isolation: "worktree"` を使って並列に作業を進める。
+複数のPR番号が指定された場合、Taskツールの `isolation: "worktree"` を使って並列に作業を進める。
 
 ### P-1. 事前準備
 
