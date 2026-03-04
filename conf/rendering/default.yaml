@@ -1,0 +1,4 @@
+screen_width: 160
+screen_height: 120
+tile_size: 8
+fps: 30

@@ -1,0 +1,4 @@
+defaults:
+  - game: default
+  - rendering: default
+  - tracking: offline

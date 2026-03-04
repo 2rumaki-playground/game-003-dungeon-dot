@@ -1,0 +1,6 @@
+starting_hp: 10
+base_attack: 1
+max_rooms: 6
+dungeon_width: 20
+dungeon_height: 15
+max_floor: 10

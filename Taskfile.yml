@@ -1,0 +1,119 @@
+# https://taskfile.dev
+version: "3"
+
+vars:
+  SRC_DIR: src
+  TEST_DIR: tests
+
+tasks:
+  default:
+    desc: 利用可能なタスクを表示
+    cmds:
+      - task --list
+
+  # ---------- Setup ----------
+  install:
+    desc: 依存関係のインストール
+    cmds:
+      - uv sync --all-groups
+
+  # ---------- Development ----------
+  dev:
+    desc: ゲームを起動
+    cmds:
+      - uv run python -m dungeon_dot
+
+  dev:debug:
+    desc: デバッグモードでゲームを起動
+    cmds:
+      - uv run python -m dungeon_dot game=debug
+
+  # ---------- Lint / Format ----------
+  lint:
+    desc: Ruffによるリントチェック
+    cmds:
+      - uv run ruff check {{.SRC_DIR}} {{.TEST_DIR}}
+
+  lint:fix:
+    desc: Ruffによるリント自動修正
+    cmds:
+      - uv run ruff check --fix {{.SRC_DIR}} {{.TEST_DIR}}
+
+  format:
+    desc: Ruffによるフォーマット適用
+    cmds:
+      - uv run ruff format {{.SRC_DIR}} {{.TEST_DIR}}
+
+  format:check:
+    desc: Ruffによるフォーマットチェック（変更なし）
+    cmds:
+      - uv run ruff format --check {{.SRC_DIR}} {{.TEST_DIR}}
+
+  # ---------- Type Check ----------
+  typecheck:
+    desc: tyによる型チェック
+    cmds:
+      - uv run ty check {{.SRC_DIR}}
+
+  # ---------- Dependency Check ----------
+  deps:check:
+    desc: import-linterによるモジュール依存チェック
+    cmds:
+      - uv run lint-imports
+
+  # ---------- Testing ----------
+  test:
+    desc: pytestでユニットテスト実行
+    cmds:
+      - uv run pytest
+
+  test:cov:
+    desc: カバレッジ付きテスト実行
+    cmds:
+      - uv run pytest --cov --cov-report=term-missing --cov-report=html
+
+  test:fast:
+    desc: slowマーク以外のテスト実行
+    cmds:
+      - uv run pytest -m "not slow"
+
+  # ---------- Benchmark ----------
+  bench:
+    desc: ベンチマークテスト実行
+    cmds:
+      - uv run pytest --benchmark-only
+
+  bench:json:
+    desc: ベンチマーク結果をJSON出力
+    cmds:
+      - uv run pytest --benchmark-only --benchmark-json=bench-results.json
+
+  # ---------- Quality Gate ----------
+  check:
+    desc: すべてのチェックを順次実行（CI相当）
+    cmds:
+      - task: format:check
+      - task: lint
+      - task: typecheck
+      - task: deps:check
+      - task: test
+
+  # ---------- Fix ----------
+  fix:
+    desc: lint + format を自動修正
+    cmds:
+      - uv run ruff check --fix {{.SRC_DIR}} {{.TEST_DIR}}
+      - uv run ruff format {{.SRC_DIR}} {{.TEST_DIR}}
+
+  # ---------- tox ----------
+  tox:
+    desc: toxで全環境テスト実行
+    cmds:
+      - uv run tox
+
+  # ---------- Clean ----------
+  clean:
+    desc: ビルドアーティファクトの削除
+    cmds:
+      - rm -rf dist/ build/ *.egg-info .pytest_cache htmlcov .coverage .tox .ruff_cache .ty_cache
+      - find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
