@@ -25,7 +25,7 @@ $![gh issue list]
 
 ## 並列処理モード（複数Issue）
 
-複数のIssue番号が指定された場合、Task toolの `isolation: "worktree"` を使って並列に作業を進める。
+複数のIssue番号が指定された場合、Taskツールの `isolation: "worktree"` を使って並列に作業を進める。
 
 ### P-1. 事前準備
 
@@ -44,7 +44,7 @@ $![gh issue list]
 あなたはIssue #<番号> の実装担当です。
 
 ## リポジトリ情報
-- owner/repo: <owner>/<repo>
+- owner/repo: {owner}/{repo}
 - ベースブランチ: main
 
 ## Issue内容
