@@ -14,7 +14,13 @@
 - `git diff main...HEAD --stat` でmainからの変更ファイル一覧を確認
 - `git ls-remote --heads origin "$(git rev-parse --abbrev-ref HEAD)"` で現在のブランチがリモートに存在するか確認
 
-### 2. コミット前チェック
+### 2. 依存関係のインストール
+
+```
+task install
+```
+
+### 3. コミット前チェック
 
 以下を順に実行し、問題があれば修正する:
 
@@ -26,18 +32,18 @@
 
 問題が見つかった場合は修正してから次に進む。
 
-### 3. コミット
+### 4. コミット
 
 - 未コミットの変更がある場合のみコミットする（変更がなければスキップ）
 - Conventional Commits形式、日本語、50文字以内
 - `.github/git-commit-instructions.md` に記載のtype一覧（feat/fix/docs/refactor/test/chore/perf/style）から選択
 - 関連ファイルを個別に `git add` する（`git add .` は使わない）
 
-### 4. Push
+### 5. Push
 
 - `git push -u origin <ブランチ名>` でリモートにpush
 
-### 5. PR作成
+### 6. PR作成
 
 - 既にこのブランチのPRが存在するか `gh pr list --head <ブランチ名>` で確認
 - PRが既に存在する場合はpushのみで完了（PRのURLを表示する）
