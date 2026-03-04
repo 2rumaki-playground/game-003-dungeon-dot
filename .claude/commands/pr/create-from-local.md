@@ -30,7 +30,7 @@
 
 - 未コミットの変更がある場合のみコミットする（変更がなければスキップ）
 - Conventional Commits形式、日本語、50文字以内
-- CLAUDE.mdに記載のtype一覧（feat/fix/docs/refactor/test/chore/perf/style）から選択
+- `.github/git-commit-instructions.md` に記載のtype一覧（feat/fix/docs/refactor/test/chore/perf/style）から選択
 - 関連ファイルを個別に `git add` する（`git add .` は使わない）
 
 ### 4. Push
