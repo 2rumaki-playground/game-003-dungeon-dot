@@ -32,18 +32,32 @@ task install
 
 問題が見つかった場合は修正してから次に進む。
 
-### 4. コミット
+### 4. 仕様書同期の確認
+
+コミット対象の変更が `docs/spec/` 配下の仕様ドキュメントに影響するかを確認する:
+
+1. 以下3つのコマンドで取得した変更ファイル一覧の和集合を取る:
+   - `git diff main...HEAD --name-only`（main から分岐後にコミット済みの変更）
+   - `git diff --name-only`（未ステージの作業ツリー変更）
+   - `git diff --cached --name-only`（ステージ済みの変更）
+2. 変更ファイルに以下が含まれる場合、対応する仕様ドキュメントの更新が必要か確認する:
+   - `constants.py` → `docs/spec/constants.md` の更新が必要か確認
+   - `domain/`, `presentation/`, `infrastructure/` 配下のファイル → 関連する `docs/spec/` のドキュメントに影響がないか確認
+3. 仕様ドキュメントの更新が必要な場合は、対応するドキュメントも更新してからコミットに含める
+4. 新しい仕様ドキュメントを追加した場合は `docs/spec/readme.md` の一覧も更新する
+
+### 5. コミット
 
 - 未コミットの変更がある場合のみコミットする（変更がなければスキップ）
 - Conventional Commits形式、日本語、50文字以内
 - `.github/git-commit-instructions.md` に記載のtype一覧（feat/fix/docs/refactor/test/chore/perf/style）から選択
 - 関連ファイルを個別に `git add` する（`git add .` は使わない）
 
-### 5. Push
+### 6. Push
 
 - `git push -u origin <ブランチ名>` でリモートにpush
 
-### 6. PR作成
+### 7. PR作成
 
 - 既にこのブランチのPRが存在するか `gh pr list --head <ブランチ名>` で確認
 - PRが既に存在する場合はpushのみで完了（PRのURLを表示する）
