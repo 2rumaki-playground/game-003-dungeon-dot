@@ -12,7 +12,7 @@
 - `git diff` でステージされていない変更の内容を確認
 - `git log --oneline main..HEAD` でmainからの全コミット履歴を確認
 - `git diff main...HEAD --stat` でmainからの変更ファイル一覧を確認
-- 現在のブランチがリモートに存在するか確認
+- `git ls-remote --heads origin "$(git rev-parse --abbrev-ref HEAD)"` で現在のブランチがリモートに存在するか確認
 
 ### 2. コミット前チェック
 
