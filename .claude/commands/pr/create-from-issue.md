@@ -25,7 +25,7 @@ $![gh issue list]
 
 ## 並列処理モード（複数Issue）
 
-複数のIssue番号が指定された場合、Taskツールの `isolation: "worktree"` を使って並列に作業を進める。
+複数のIssue番号が指定された場合、Agentツール（Claude Code）の `isolation: "worktree"` を使って並列に作業を進める。
 
 ### P-1. 事前準備
 
@@ -34,7 +34,7 @@ $![gh issue list]
 
 ### P-2. エージェントの並列起動
 
-各Issueに対して、Taskツールで `general-purpose` エージェントを **`isolation: "worktree"`** で**並列に**起動する。
+各Issueに対して、Agentツールで `general-purpose` エージェントを **`isolation: "worktree"`** で**並列に**起動する。
 
 **重要**: 全エージェントを**1つのメッセージ内で同時に**起動すること（逐次起動しない）。
 

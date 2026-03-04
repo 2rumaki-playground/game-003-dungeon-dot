@@ -18,7 +18,7 @@
 
 ## 並列処理モード（複数PR）
 
-複数のPR番号が指定された場合、Taskツールの `isolation: "worktree"` を使って並列に作業を進める。
+複数のPR番号が指定された場合、Agentツール（Claude Code）の `isolation: "worktree"` を使って並列に作業を進める。
 
 ### P-1. 事前準備
 
@@ -38,7 +38,7 @@ gh pr view <番号> --json headRefName -q .headRefName
 
 ### P-3. エージェントの並列起動
 
-各PRに対して、Taskツールで `general-purpose` エージェントを **`isolation: "worktree"`** で**並列に**起動する。
+各PRに対して、Agentツールで `general-purpose` エージェントを **`isolation: "worktree"`** で**並列に**起動する。
 
 **重要**: 全エージェントを**1つのメッセージ内で同時に**起動すること（逐次起動しない）。
 
