@@ -110,13 +110,14 @@ task install
    （`Validation Failed` エラーは無視する）
 
 6. **ドラフトを解除**: `gh pr ready <番号>`
+   この操作により、`.github/workflows/ci.yml` の `ready_for_review` イベントがトリガーされ、CIが起動する。
 
 完了したら、対応したコメント数とPRのURLを報告してください。
 ````
 
 ### P-4. 完了待機・結果報告
 
-全エージェントの完了を待ち、各エージェントの結果をまとめてユーザーに報告する。ドラフトのまま残っているPRがあれば `gh pr ready <番号>` で解除する。
+全エージェントの完了を待ち、各エージェントの結果をまとめてユーザーに報告する。ドラフトのまま残っているPRがあれば `gh pr ready <番号>` で解除する（この操作により、`.github/workflows/ci.yml` の `ready_for_review` イベントがトリガーされ、CIが起動する）。
 
 ---
 
@@ -179,3 +180,5 @@ gh api repos/{owner}/{repo}/pulls/<番号>/requested_reviewers \
 ```
 gh pr ready <番号>
 ```
+
+この操作により、`.github/workflows/ci.yml` の `ready_for_review` イベントがトリガーされ、CIが起動する。
